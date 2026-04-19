@@ -12,7 +12,7 @@ When constructing commands, use the absolute path to the directory containing th
 Run:
 
 ```
-md-to-pdf --version
+<skill-dir>/node_modules/.bin/md-to-pdf --version
 ```
 
 If the command is not found, run setup (see below) before proceeding.
@@ -22,6 +22,8 @@ If the command is not found, run setup (see below) before proceeding.
 ```
 bash <skill-dir>/setup.sh
 ```
+
+If setup aborts due to vulnerabilities, inform the user and ask whether they want to re-run with `--skip-audit` to install anyway.
 
 If setup fails because Node.js is not installed:
 1. Check which version managers are available: `command -v mise`, `command -v nvm`, `command -v fnm`, `command -v volta`, `command -v brew`
@@ -33,7 +35,7 @@ If setup fails because Node.js is not installed:
 ## Converting a file
 
 ```
-md-to-pdf --config-file <skill-dir>/config.json <input.md>
+<skill-dir>/node_modules/.bin/md-to-pdf --config-file <skill-dir>/config.json <input.md>
 ```
 
 The PDF is saved alongside the input file with a `.pdf` extension.
@@ -52,5 +54,5 @@ If diagrams appear as raw text, mermaid failed to load from the CDN. Check the u
 
 ## Errors
 
-- `command not found: md-to-pdf` — run setup
-- Any npm permission error during setup — the user may need to configure npm's global prefix to a user-writable directory
+- Binary not found or `node_modules/` missing — run setup
+- Any npm error during setup — ensure Node.js and npm are installed and the skill directory is writable
